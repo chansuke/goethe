@@ -1,2 +1,2 @@
-## go-interpretor
+## goethe
 Interpretor in golang
