@@ -1,2 +1,2 @@
 ## goethe
-Interpretor in golang
+Interpretor in golang.
