@@ -20,6 +20,7 @@ type Program struct {
 	Statements []Statement
 }
 
+// root node of AST
 func (p *Program) TokenLiteral() string {
 	if len(p.Statements) > 0 {
 		return p.Statements[0].TokenLiteral()
@@ -30,17 +31,16 @@ func (p *Program) TokenLiteral() string {
 
 type LetsStatement struct {
 	Token token.Token
-
 	Name  *Identifier
 	Value Expression
 }
 
-func (ls *LetsStatement) statementNode()       {}
+func (ls *LetsStatement) statementNode() {}
+
 func (ls *LetsStatement) TokenLiteral() string { return ls.Token.Literal }
 
 type Identifier struct {
 	Token token.Token
-
 	Value string
 }
 
