@@ -17,7 +17,7 @@ type Parser struct {
 
 func New(l *lexer.Lexer) *Parser {
 	p := &Parser{
-		l: l,
+		l:      l,
 		errors: []string{},
 	}
 	p.nextToken()
@@ -51,7 +51,7 @@ func (p *Parser) ParseProgram() *ast.Program {
 		}
 		p.nextToken()
 	}
-	
+
 	return program
 }
 
@@ -88,7 +88,7 @@ func (p *Parser) parseLetStatement() *ast.LetStatement {
 
 func (p *Parser) parseReturnStatement() *ast.ReturnStatement {
 	stmt := &ast.ReturnStatement{Token: p.curToken}
-	
+
 	p.nextToken()
 
 	for !p.curTokenIs(token.SEMICOLON) {
@@ -114,79 +114,3 @@ func (p *Parser) expectPeek(t token.TokenType) bool {
 		return false
 	}
 }
-
-function parseProgram() {
-	program = newProgramASTNode()
-	advanceTokens()
-
-	for (currentToken() != EOF_TOKEN) {
-		statement = null
-
-		if (currentToken() == LET_TOKEN) {
-			statement = parseLetStatement()
-		} else if (currentToken() == RETURN_TOKEN) {
-			statement = parseReturnStatement()
-		} else if (currentToken() == IF_TOKEN) {
-			statement = parseIfStatement()
-		}
-
-		if (statement != null) {
-			program.Statements.push(statement)
-		}
-
-		advanceTokens()
-	}
-
-	return program
-}
-
-function parseLetStatement() {
-	advanceTokens()
-
-	identifier = parseIdentifier()
-
-	advanceTokens()
-
-	if currentToken() != EQUAL_TOKEN {
-		parseError("no euqal sign!")
-		return null
-	}
-
-	advanceTokens()
-
-	value = parseExpression()
-
-	variableStatement = newVariableStatementASTNode()
-	variableStatement.identifier = identifier
-	variableStatement.value = value
-	return variableStatement
-}
-
-function parseIdentifier() {
-	identifier = newIdentifierASTNode()
-	identifier.token = currentToken()
-	return identifier
-}
-
-function parseExpression() {
-	if (currentToken() == INTEGER_TOKEN) {
-		if (nextToken() == PLUS_TOKEN) {
-			return parseOperatorExpression()
-		} else if (nextToken() == SEMICOLON_TOKEN) {
-			return parseIntegralLiteral()
-		} else if (currentToken() == LEFT_PAREN) {
-			return parseGroupedExpression()
-		}
-	}
-}
-
-function parseOperatorExpression() {
-	operatorExpression = newOperatorExpression()
-
-	operatorExpression.left = parseIntegralLiteral()
-	operatorExpression.operator = currentToken()
-	operatorExpression.right = parseExpression()
-
-	return operatorExpression()
-}
-
