@@ -1,18 +1,18 @@
 package parser
 
 import (
+	"fmt"
 	"goethe/ast"
 	"goethe/lexer"
 	"goethe/token"
 )
 
 type Parser struct {
-	l *lexer.Lexer
+	l      *lexer.Lexer
+	errors []string
 
 	curToken  token.Token
 	peekToken token.Token
-
-	errors []string
 }
 
 func New(l *lexer.Lexer) *Parser {
@@ -31,7 +31,8 @@ func (p *Parser) Errors() []string {
 }
 
 func (p *Parser) peekError(t token.TokenType) {
-	msg := fmt.sprintf("expected next token to be %s, got %s instead", t, p.peekToken.Type)
+	msg := fmt.Sprintf("expected next token to be %s, got %s instead",
+		t, p.peekToken.Type)
 	p.errors = append(p.errors, msg)
 }
 
