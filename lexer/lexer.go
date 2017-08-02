@@ -17,11 +17,12 @@ func New(input string) *Lexer {
 
 func (l *Lexer) NextToken() token.Token {
 	var tok token.Token
+
 	l.skipWhitespace()
 
 	switch l.ch {
 	case '=':
-		if l.peekChair() == '=' {
+		if l.peekChar() == '=' {
 			ch := l.ch
 			l.readChar()
 			tok = token.Token{Type: token.EQ, Literal: string(ch) + string(l.ch)}

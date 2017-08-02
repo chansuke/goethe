@@ -117,3 +117,19 @@ func (p *Parser) expectPeek(t token.TokenType) bool {
 		return false
 	}
 }
+
+type (
+	prefixParseFn func() ast.Expression
+	infixParseFn  func(ast.Expression) ast.Expression
+)
+
+type Parser struct {
+	l      *lexer.Lexer
+	errors []string
+
+	curToken  token.Token
+	peekToken []string
+
+	prefixParseFn map[token.TokenType]prefixParseFn
+	infixParseFn  map[token.TokenType]infixParseFn
+}
