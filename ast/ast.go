@@ -84,6 +84,7 @@ func (p *Program) String() string {
 func (ls *LetStatement) String() string {
 	var out bytes.Buffer
 
+	out.WriteString(ls.TokenLiteral() + "	")
 	out.WriteString(ls.Name.String())
 	out.WriteString(" = ")
 
@@ -119,4 +120,63 @@ func (es *ExpressionStatement) String() string {
 
 func (i *Identifier) String() string {
 	return i.Value
+}
+
+type ExpressionStatement struct {
+	Token      token.Token
+	Expression Expression
+}
+
+func (es *ExpressionStatement) statementNode()       {}
+func (es *ExpressionStatement) TokenLiteral() string { return es.TokenLiteral }
+
+type Node interface {
+	TokenLiteral() string
+	String() string
+}
+
+type IntegerLiteral struct {
+	Token token.Token
+	Value int64
+}
+
+func (il *IntegerLiteral) expressionNode()      {}
+func (li *IntegerLiteral) TokenLiteral() string { return il.TokenLiteral }
+func (li *IntegerLiteral) String() string       { return il.TokenLiteral }
+
+type (
+	prefixParseFn func() ast.Expression
+	infixParseFn  func(ast.Expression) ast.Expression
+)
+
+type Parse struct {
+	l      *lexer.Lexer
+	errors []string
+
+	curToken  token.Token
+	peekToken token.Token
+
+	prefixParseFns map[token.TokenType]prefixParseFn
+	infixParseFns  map[token.TokenType]infixParseFn
+}
+
+type InfixExpression struct {
+	Token    token.Token // The operator token, e.g. +
+	Left     Expression
+	Operator string
+	Right    Expression
+}
+
+func (oe *InfixExpression) expressionNode()      {}
+func (oe *InfixExpression) TokenLiteral() string { return oe.Token.Literal }
+func (oe *InfixExpression) String() string {
+	var out bytes.Buffer
+
+	out.WriteString("(")
+	out.WriteString(oe.Left.String())
+	out.WriteString(" " + oe.Operator + " ")
+	out.WriteString(oe.Right.String())
+	out.WriteString(")")
+
+	return out.String()
 }
