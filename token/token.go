@@ -8,9 +8,10 @@ const (
 
 	IDENT = "IDENT"
 	INT   = "INT"
+
 	// Operators
-	ASSIGN   = "ASSIGN"
-	PLUS     = "PLUS"
+	ASSIGN   = "="
+	PLUS     = "+"
 	MINUS    = "-"
 	BANG     = "!"
 	ASTERISK = "*"
@@ -18,23 +19,27 @@ const (
 
 	LT = "<"
 	GT = ">"
-	// Delimters
+
+	EQ     = "=="
+	NOT_EQ = "!="
+
+	// Delimiters
 	COMMA     = ","
 	SEMICOLON = ";"
-	LPAREN    = "("
-	RPAREN    = ")"
-	LBRACE    = "{"
-	RBRACE    = "}"
 
+	LPAREN = "("
+	RPAREN = ")"
+	LBRACE = "{"
+	RBRACE = "}"
+
+	// Keywords
 	FUNCTION = "FUNCTION"
-	LET      = "FUN"
+	LET      = "LET"
 	TRUE     = "TRUE"
 	FALSE    = "FALSE"
 	IF       = "IF"
 	ELSE     = "ELSE"
 	RETURN   = "RETURN"
-	EQ       = "=="
-	NOT_EQ   = "!="
 )
 
 type Token struct {
