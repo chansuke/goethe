@@ -1,6 +1,6 @@
 package ast
 
-import "goethe/token"
+import "github.com/chansuke/goethe/token"
 
 type Node interface {
 	TokenLiteral() string

@@ -1,0 +1,11 @@
+language: go
+
+go:
+  - 1.7.x
+
+install:
+  - go get -t -d -v ./...
+  - go build -v
+
+script:
+  - go test -v -race ./...
