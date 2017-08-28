@@ -1,7 +1,7 @@
 package ast
 
 import (
-	"goethe/token"
+	"github.com/chansuke/goethe/token"
 	"testing"
 )
 

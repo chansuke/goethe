@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"goethe/repl"
 	"os"
 	"os/user"
+
+	"github.com/chansuke/goethe/repl"
 )
 
 func main() {
