@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/chansuke/goethe/lexer"
-	"github.com/chansuke/goethe/token"
+	"goethe/lexer"
+	"goethe/token"
 )
 
 const PROMPT = ">> "

@@ -5,7 +5,7 @@ import (
 	"os"
 	"os/user"
 
-	"github.com/chansuke/goethe/repl"
+	"goethe/repl"
 )
 
 func main() {
