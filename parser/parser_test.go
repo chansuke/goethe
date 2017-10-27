@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func testLetStatements(t *testing.T) {
+func TestLetStatements(t *testing.T) {
 	input := `
 let x = 5;
 let y = 10;
@@ -16,7 +16,7 @@ let foobar = 838383;
 	l := lexer.New(input)
 	p := New(l)
 
-	program := p.parseProgram()
+	program := p.ParseProgram()
 	if program == nil {
 		t.Fatalf("ParseProgram() returned nil")
 	}
@@ -46,7 +46,7 @@ func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
 		return false
 	}
 
-	letStmt, ok := s.(*ast.Statement)
+	letStmt, ok := s.(*ast.LetStatement)
 	if !ok {
 		t.Errorf("s not *ast.LetStatement. got=%T", s)
 		return false

@@ -66,7 +66,7 @@ func (p *Parser) parseLetStatement() *ast.LetStatement {
 func (p *Parser) parseStatement() ast.Statement {
 	switch p.curToken.Type {
 	case token.LET:
-		return p.parseStatement()
+		return p.parseLetStatement()
 	default:
 		return nil
 	}
@@ -82,7 +82,7 @@ func (p *Parser) peekTokenIs(t token.TokenType) bool {
 
 func (p *Parser) expectPeek(t token.TokenType) bool {
 	if p.peekTokenIs(t) {
-		p.peekToken()
+		p.nextToken()
 		return true
 	} else {
 		return false
