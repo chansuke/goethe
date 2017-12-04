@@ -394,7 +394,7 @@ func TestIfExpression(t *testing.T) {
 }
 
 func TestFunctionLiteralParsing(t *testing.T) {
-	input := `fn(x, y) { x * y; }`
+	input := `func(x, y) { x + y; }`
 
 	l := lexer.New(input)
 	p := New(l)
@@ -437,7 +437,7 @@ func TestFunctionLiteralParsing(t *testing.T) {
 			function.Body.Statements[0])
 	}
 
-	testInfixExpression(t, bodyStmt.Expression, "x", "*", "y")
+	testInfixExpression(t, bodyStmt.Expression, "x", "+", "y")
 }
 
 func TestFunctionParameterParsing(t *testing.T) {
@@ -445,9 +445,9 @@ func TestFunctionParameterParsing(t *testing.T) {
 		input          string
 		expectedParams []string
 	}{
-		{input: "fn() {};", expectedParams: []string{}},
-		{input: "fn(x) {};", expectedParams: []string{"x"}},
-		{input: "fn(x, y, z) {};", expectedParams: []string{"x", "y", "z"}},
+		{input: "func() {};", expectedParams: []string{}},
+		{input: "func(x) {};", expectedParams: []string{"x"}},
+		{input: "func(x, y, z) {};", expectedParams: []string{"x", "y", "z"}},
 	}
 
 	for _, tt := range tests {

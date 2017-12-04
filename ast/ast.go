@@ -213,7 +213,6 @@ func (bs *BlockStatement) String() string {
 }
 
 type FunctionLiteral struct {
-	// `func` ref:token.go
 	Token      token.Token
 	Parameters []*Identifier
 	Body       *BlockStatement
