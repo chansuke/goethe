@@ -14,32 +14,36 @@ var (
 func Eval(node ast.Node) object.Object {
 	switch node := node.(type) {
 
-		case *ast.Program:
-			return evalStatements(node.Statements)
+	case *ast.Program:
+		return evalStatements(node.Statements)
 
-		case *ast.PrefixExpression:
-			right := Eval(node.Right)
-			return evalPrefixExpression(node.Operator, right)
+	case *ast.PrefixExpression:
+		right := Eval(node.Right)
+		return evalPrefixExpression(node.Operator, right)
 
-		case *ast.IntegerLiteral:
-			return &object.Integer{Value: node.Value}
+	case *ast.IntegerLiteral:
+		return &object.Integer{Value: node.Value}
 
-		case *ast.ExpressionStatement:
-			return Eval(node.Expression)
+	case *ast.ExpressionStatement:
+		return Eval(node.Expression)
 
-		case *ast.Boolean:
-			return nativeBoolToBooleanObject(node.Value)
+	case *ast.Boolean:
+		return nativeBoolToBooleanObject(node.Value)
 
-		case *ast.InfixExpression:
-			left := Eval(node.Left)
-			right := Eval(node.Right)
-			return evalInfixExpression(node.Operator, left, right)
+	case *ast.InfixExpression:
+		left := Eval(node.Left)
+		right := Eval(node.Right)
+		return evalInfixExpression(node.Operator, left, right)
 
-		case *ast.BlockStatement:
-			return evalStatements(node.Statements)
+	case *ast.BlockStatement:
+		return evalStatements(node.Statements)
 
-		case *ast.IfExpression:
-			return evalIfExpression(node)
+	case *ast.IfExpression:
+		return evalIfExpression(node)
+
+	case *ast.ReturnStatement:
+		val := Eval(node.ReturnValue)
+		return &object.ReturnValue{Value: val}
 	}
 
 	return nil
