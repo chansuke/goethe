@@ -123,15 +123,6 @@ func testIntegerObject(t *testing.T, obj object.Object, expected int64) bool {
 	return true
 }
 
-func evalMinusPrefixOperatorExpression(right object.Object) object.Object {
-	if right.Type() != object.INTEGER_OBJ {
-		return NULL
-	}
-
-	value := right.(*object.Integer).Value
-	return &object.Integer{Value: -value}
-}
-
 func TestIfElseExpression(t *testing.T) {
 	tests := []struct {
 		input    string
