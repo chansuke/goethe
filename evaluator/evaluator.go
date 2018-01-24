@@ -12,7 +12,7 @@ var (
 	FALSE = &object.Boolean{Value: false}
 )
 
-func Eval(node ast.Node) object.Object {
+func Eval(node ast.Node, env *object.Environment) object.Object {
 	switch node := node.(type) {
 
 	case *ast.Program:
@@ -52,6 +52,16 @@ func Eval(node ast.Node) object.Object {
 
 	case *ast.IfExpression:
 		return evalIfExpression(node)
+
+	case *ast.LetStatement:
+		val := Eval(node.Value, env)
+		if isError(val) {
+			return val
+		}
+		env.Set(node.Name.Value, val)
+
+	case *ast.Identifier:
+		return evalIdentifier(node, env)
 
 	case *ast.ReturnStatement:
 		val := Eval(node.ReturnValue)
@@ -235,4 +245,16 @@ func isError(obj object.Object) bool {
 		return obj.Type() == object.ERROR_OBJ
 	}
 	return false
+}
+
+func evalIdentifier(
+	node *ast.Identifier,
+	env *object.Environment,
+) object.Object {
+	val, ok := env.Get(node.Value)
+	if !ok {
+		return newError("identifier not found:" + node.Value)
+	}
+
+	return val
 }
