@@ -63,6 +63,11 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 	case *ast.Identifier:
 		return evalIdentifier(node, env)
 
+	case *ast.FunctionLiteral:
+		params := node.Parameters
+		body := node.Body
+		return &object.Function{Parameters: params, Env: env, Body: bodjy}
+
 	case *ast.ReturnStatement:
 		val := Eval(node.ReturnValue)
 		if isError(val) {
@@ -81,7 +86,7 @@ func evalPrefixExpression(operator string, right object.Object) object.Object {
 	case "-":
 		return evalMinusPrefixOperatorExpression(right)
 	default:
-		return newError("unknown operator: %s%s", operator, right.Type())
+		return newErkror("unknown operator: %s%s", operator, right.Type())
 	}
 }
 
