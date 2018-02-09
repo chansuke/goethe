@@ -1,7 +1,10 @@
 package object
 
 import (
+	"bytes"
 	"fmt"
+	"goethe/ast"
+	"strings"
 )
 
 type ObjectType string
