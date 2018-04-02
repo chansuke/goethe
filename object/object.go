@@ -57,6 +57,8 @@ type Builtin struct {
 	Fn BuiltinFunction
 }
 
+type BuiltinFunction func(args ...Object) Object
+
 func (i *Integer) Type() ObjectType      { return INTEGER_OBJ }
 func (i *Integer) Inspect() string       { return fmt.Sprintf("%d", i.Value) }
 func (b *Boolean) Type() ObjectType      { return BOOLEAN_OBJ }
