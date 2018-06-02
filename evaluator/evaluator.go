@@ -2,8 +2,8 @@ package evaluator
 
 import (
 	"fmt"
-	"goethe/ast"
-	"goethe/object"
+	"github.com/chansuke/goethe/ast"
+	"github.com/chansuke/goethe/object"
 )
 
 var (

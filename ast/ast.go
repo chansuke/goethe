@@ -2,7 +2,7 @@ package ast
 
 import (
 	"bytes"
-	"goethe/token"
+	"github.com/chansuke/goethe/token"
 	"strings"
 )
 
