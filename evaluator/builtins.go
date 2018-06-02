@@ -1,7 +1,7 @@
 package evaluator
 
 import (
-	"goethe/object"
+	"github.com/chansuke/goethe/object"
 )
 
 var builtins = map[string]*object.Builtin{

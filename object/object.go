@@ -3,7 +3,7 @@ package object
 import (
 	"bytes"
 	"fmt"
-	"goethe/ast"
+	"github.com/chansuke/goethe/ast"
 	"strings"
 )
 

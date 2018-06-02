@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"io"
 
-	"goethe/evaluator"
-	"goethe/lexer"
-	"goethe/parser"
+	"github.com/chansuke/goethe/evaluator"
+	"github.com/chansuke/goethe/lexer"
+	"github.com/chansuke/goethe/parser"
 )
 
 const PROMPT = ">> "
