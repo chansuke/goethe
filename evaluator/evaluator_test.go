@@ -1,9 +1,9 @@
 package evaluator
 
 import (
-	"goethe/lexer"
-	"goethe/object"
-	"goethe/parser"
+	"github.com/chansuke/goethe/lexer"
+	"github.com/chansuke/goethe/object"
+	"github.com/chansuke/goethe/parser"
 	"testing"
 )
 
@@ -319,8 +319,8 @@ func TestStringConcatenation(t *testing.T) {
 
 func TestBuiltinFunctions(t *testing.T) {
 	tests := []struct {
-		input			string
-		expected	interface{}
+		input    string
+		expected interface{}
 	}{
 		{`len("")`, 0},
 		{`len("four")`, 4},
