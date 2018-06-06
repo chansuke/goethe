@@ -2,8 +2,8 @@ package parser
 
 import (
 	"fmt"
-	"goethe/ast"
-	"goethe/lexer"
+	"github.com/chansuke/goethe/ast"
+	"github.com/chansuke/goethe/lexer"
 	"testing"
 )
 
